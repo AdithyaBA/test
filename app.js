@@ -3,6 +3,7 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 // All routes
 const userRouter = require("./routes/auth");
@@ -16,6 +17,11 @@ mongoose.connect(process.env.DB, {
 }).catch((err) => {
     console.log("FAILED TO CONNECT TO DB", err.message);
 })
+
+app.use(bodyParser.json());
+
+// Middlewares
+app.use("/api/v1", userRouter);
 
 // Set the PORT
 const PORT = process.env.PORT || 8000
