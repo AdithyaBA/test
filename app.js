@@ -4,6 +4,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 const mongoose = require("mongoose");
 
+// All routes
+const userRouter = require("./routes/auth");
+
 // Create the DB connection
 mongoose.connect(process.env.DB, {
     useNewUrlParser: true,
