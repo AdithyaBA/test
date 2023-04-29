@@ -1,6 +1,21 @@
 const express = require("express");
 const app = express();
+const dotenv = require("dotenv");
+dotenv.config();
 const mongoose = require("mongoose");
+
+// Create the DB connection
+mongoose.connect(process.env.DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("CONNECTED TO MONGODB");
+}).catch((err) => {
+    console.log("FAILED TO CONNECT TO DB", err.message);
+})
+
+// Set the PORT
+const PORT = process.env.PORT || 8000
 
 // Create the server
 app.listen(PORT, () => {
