@@ -1,6 +1,7 @@
 const User = require("../model/user");
 const { check, validationResult } = require("express-validator");
 
+// signup controller
 exports.signup = (req, res) => {
   const errors = validationResult(req);
 
@@ -23,3 +24,23 @@ exports.signup = (req, res) => {
     })
   })
 };
+
+// Signin controller
+exports.signin = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log("aaaaaa", errors.array()[0]);
+    return res.status(422).json({
+      error: errors.array()[0].msg
+    });
+  }
+  const {email, password} = req.body;
+  User.findOne({email}, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "USER email does not exists"
+      });
+    }
+  })
+  next();
+}
