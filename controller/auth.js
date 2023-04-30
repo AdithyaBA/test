@@ -1,7 +1,5 @@
 const User = require("../model/user");
 const { check, validationResult } = require("express-validator");
-//const jwt = require("jsonwebtoken");
-//const { expressjwt: jwt } = require("express-jwt");
 
 exports.signup = (req, res) => {
   const errors = validationResult(req);
