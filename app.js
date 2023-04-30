@@ -18,7 +18,7 @@ mongoose.connect(process.env.DB, {
     console.log("FAILED TO CONNECT TO DB", err.message);
 })
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 // Middlewares
 app.use("/api/v1", userRouter);
