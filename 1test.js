@@ -1,12 +1,17 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://127.0.0.1:27017/mydb";
+let arr = [1,2,3,1,1,4,5,3,3];
 
-MongoClient.connect(url, {
-    useNewUrlParser: true
-}, function(err, db) {
-  if(err){
-    console.log("ERROR OCCURED");
+let dup = [];
+
+function duplicate(arr){
+  for(let i=0; i<arr.length; i++){
+    if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])){
+      if(!dup.includes(arr[i])){
+        dup.push(arr[i])
+      }
+    }
   }
-  console.log("Database created!");
-  db.close();
-});
+  return dup;
+}
+
+duplicate(arr)
+console.log(dup);

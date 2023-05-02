@@ -59,3 +59,16 @@ exports.signin = (req, res, next) => {
   })
   //next();
 }
+
+exports.signout = (req, res) => {
+  res.clearCookie("token");
+  res.json({
+    message: "User signout successfully"
+  });
+}
+
+// Protected router
+exports.isSignedIn = expressJwt({
+  secret: process.env.SECRET,
+  userProperty: "auth"
+});

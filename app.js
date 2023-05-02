@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 // All routes
-const userRouter = require("./routes/auth");
+const authRouter = require("./routes/auth");
+const userRouter = require("./routes/user");
 
 // Create the DB connection
 mongoose.connect(process.env.DB, {
@@ -21,6 +22,7 @@ mongoose.connect(process.env.DB, {
 app.use(bodyParser.json())
 
 // Middlewares
+app.use("/api/v1", authRouter);
 app.use("/api/v1", userRouter);
 
 // Set the PORT
