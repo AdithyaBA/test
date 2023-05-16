@@ -1,17 +1,12 @@
-let arr = [1,2,3,1,1,4,5,3,3];
+const express = require("express");
+const app = express();
 
-let dup = [];
+app.get("/", (req, res) => {
+  console.log("I am get request");
+  debugger
+  res.send("Yen samachara");
+})
 
-function duplicate(arr){
-  for(let i=0; i<arr.length; i++){
-    if(arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])){
-      if(!dup.includes(arr[i])){
-        dup.push(arr[i])
-      }
-    }
-  }
-  return dup;
-}
-
-duplicate(arr)
-console.log(dup);
+app.listen(3000, () => {
+  console.log("Server is running on PORT 3000");
+})
