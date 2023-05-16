@@ -1,12 +1,12 @@
-const express = require("express");
-const app = express();
+let obj1 = {
+  fName: "adi"
+}
 
-app.get("/", (req, res) => {
-  console.log("I am get request");
-  debugger
-  res.send("Yen samachara");
-})
+let obj2 = {
+  fName: "ram"
+}
 
-app.listen(3000, () => {
-  console.log("Server is running on PORT 3000");
-})
+function count(age, cage){
+  console.log(`${this.fName}, ${cage}`);
+}
+count.apply(obj2, [100, 200, 300])
